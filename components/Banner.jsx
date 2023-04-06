@@ -1,17 +1,19 @@
 import React from "react";
 import Link from "next/link";
+import { urlFor } from '../src/pages/index'
 
-const Banner = () => {
+const Banner = ({ banner }) => {
+  console.log("asdf ",banner)
   return (
     <div className="banner-container">
       <div className="banner-text-container">
-        <h3> discover your wellness</h3>
+        <h3>{banner.midText}</h3>
         <Link href="./product">
-          <button>shop now</button>
+          <button>{banner.buttonText}</button>
         </Link>
         {/* loop of 3+ images with ^ above */}
       </div>
-      <img alt="essential oils" src="" className="banner-image" />
+      <img alt="essential oils" src={urlFor(banner.image)} className="banner-image" />
     </div>
   );
 };

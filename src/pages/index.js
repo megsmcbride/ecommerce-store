@@ -14,15 +14,14 @@ import imageUrlBuilder from "@sanity/image-url";
 
 const builder = imageUrlBuilder(client)
 
- const urlFor = (source) => builder.image(source);
+export const urlFor = (source) => builder.image(source);
 
 export const getServerSideProps = async() => { 
   const query = '*[_type == "product"]'
   const productsData = await client.fetch(query)
- console.log("hell", productsData)
   const bannerQuery = '*[_type == "banner"]'
   const bannerData = await client.fetch(bannerQuery)
-
+  
   return {
    props: {
     productsData,
@@ -35,14 +34,14 @@ export const getServerSideProps = async() => {
 export default function Home({ productsData, bannerData}) {
   return (
     <>
-      <Banner />
-      <div>
+      <Banner banner = {bannerData[0]}/>
+      <div className='product-homepage'>
         <h2>Featured Collection</h2>
-        <p> Find your balance and nourish your soul</p>
+        <p> Find your balance & nourish your soul</p>
       </div>
     {/* could turn this into a products component */}
       <div>
-        {productsData.map(product => product.name)}
+        {productsData?.map(product => product.name)}
         
       </div>
       <Footer />

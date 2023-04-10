@@ -13,7 +13,7 @@ const Banner = ({ banner }) => {
         </Link>
         {/* loop of 3+ images with ^ above */}
       </div>
-      <img alt="essential oils" src={urlFor(banner.image)} className="banner-image" />
+      <img alt="essential oils" src={urlFor(banner.image)} />
     </div>
   );
 };
